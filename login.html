@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<title>Login & Registration Form | CoderGirl</title>-->
+  <!-- Custom CSS File -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #add8e6; /* Light blue background color (sky blue) */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 300px;
+    }
+
+    .login.form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease-in-out; /* Add transition for a smooth effect */
+    }
+
+    .login.form:hover {
+      transform: scale(1.05); /* Scale up on hover */
+    }
+
+    header {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .button {
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #2980b9;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3498db;
+    }
+
+    /* Style for the signup link */
+    .signup a {
+      color: #2ecc71; /* Green color for the signup link */
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login form">
+      <header>Đăng Nhập</header>
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Enter your email" name="email">
+        <input type="password" placeholder="Enter your password" name="password">
+        <input type="submit" class="button" value="Đăng Kí">
+        <center>
+          {% if success %}
+          <p style="color: green;"><b>{{ success }}</b></p>
+          {% endif %}
+          {% if error %}
+          <p style="color: red;">{{ error }}</p>
+          {% endif %}
+        </center>
+      </form>
+      <div class="signup">
+        <span class="signup">Bạn chưa có tài khoản??
+         <a href="{% url 'register' %}"><label for="check">Đăng kí</label></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

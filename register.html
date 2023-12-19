@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<!---Lập Trình Bởi CoderGirl | www.codinglabweb.com--->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Đăng Ký | CoderGirl</title>
+  <!---Tệp CSS Tùy Chỉnh--->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #87CEEB; /* Màu xanh da trời */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 20px;
+    }
+
+    header {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="submit"] {
+      background-color: #87CEEB; /* Màu xanh da trời */
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #4682B4; /* Màu xanh dương đậm */
+    }
+
+    .signup {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    a {
+      color: #87CEEB; /* Màu xanh da trời */
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      color: #4682B4; /* Màu xanh dương đậm */
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form registration">
+      <header>Đăng Ký</header>
+      <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Nhập tên của bạn" name="first_name">
+        <input type="text" placeholder="Nhập họ của bạn" name="last_name">
+        <input type="text" placeholder="Nhập địa chỉ email của bạn" name="email">
+        <input type="password" placeholder="Tạo mật khẩu" name="password1">
+        <input type="password" placeholder="Xác nhận mật khẩu" name="password2">
+        <input type="submit" class="button" value="Đăng Ký">
+        <div class="error">
+          {% if error %}
+          <p>{{ error }}</p>
+          {% endif %}
+        </div>
+      </form>
+      <div class="signup">
+        <span>Đã có tài khoản? <a href="{% url 'login' %}">Đăng Nhập</a></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
